@@ -112,6 +112,8 @@ namespace API.Controllers
 
             var photo = user.Photos.FirstOrDefault(p => p.Id == photoId);
 
+            if (photo == null) return NotFound("No photo found");
+
             if (photo.IsMain) return BadRequest("You cannot delete your main photo");
 
             if (photo.PublicId != null) 
